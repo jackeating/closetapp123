@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if request.user == user %}
-<a href="{% url 'app:users_detail' request.user.id %}"><h2 class="user-name">@{{ user.username }}</h2></a>
+<a class="text-muted"　href="{% url 'app:users_detail' request.user.id %}"><h2 class="user-name">@{{ user.username }}</h2></a>
 
 
 <h2>カテゴリー</h2>
@@ -35,7 +35,7 @@
         </a>
         <div class="clothes-info">
             <a href="{% url 'app:users_clothes_category' pk=clothes.user.id  category=clothes.category %}" class="category">{{ clothes.category }}</a>
-            <a href="{% url 'app:users_detail' clothes.user.id %}">@{{ clothes.user }}</a>
+            <a class="text-muted"　href="{% url 'app:users_detail' clothes.user.id %}">@{{ clothes.user }}</a>
         </div>
     </div>
 {% endfor %}

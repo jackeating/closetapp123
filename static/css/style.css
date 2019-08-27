@@ -33,6 +33,7 @@ body > .container {
 }
 
 header h1 {
+    text-align: left;
     margin: 0;
     height: 100%;
     line-height: 70px;
