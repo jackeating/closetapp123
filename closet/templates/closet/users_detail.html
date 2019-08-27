@@ -1,0 +1,44 @@
+{% extends 'closet/base.html' %}
+
+{% block content %}
+
+{% if request.user == user %}
+<a href="{% url 'app:users_detail' request.user.id %}"><h2 class="user-name">@{{ user.username }}</h2></a>
+
+
+<h2>カテゴリー</h2>
+<div class="clothes-info">
+  {% for ca in cate %}
+  {% csrf_token %}
+  <a href="{% url 'app:users_clothes_category' pk=user.id  category=ca %}" class="category">{{ca}}</a>
+  {% endfor %}
+</div>
+{% if category %}
+   <h2>カテゴリー;{{category.title}}の検索結果</h2>
+{% endif %}
+
+{% if clothess.count != 0 %}
+    <p>登録<strong>{{ clothess.count }}</strong>件</p>
+{% else %}
+    {% if user == request.user %}
+        <p>初めての登録をしてみましょう！</p>
+    {% else %}
+        <p>@{{ user.username }}さんはまだ登録していません。</p>
+    {% endif %}
+{% endif %}
+
+<div class="clothes-container">
+{% for clothes in clothess %}
+    <div class="clothes">
+        <a href="{% url 'app:clothes_detail' clothes.id %}">
+            <img src="{{ clothes.image.url }}" class="clothes-img" width="120%" height="30px">
+        </a>
+        <div class="clothes-info">
+            <a href="{% url 'app:users_clothes_category' pk=clothes.user.id  category=clothes.category %}" class="category">{{ clothes.category }}</a>
+            <a href="{% url 'app:users_detail' clothes.user.id %}">@{{ clothes.user }}</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endif %}
+{% endblock %}

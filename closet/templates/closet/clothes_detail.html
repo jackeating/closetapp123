@@ -1,0 +1,35 @@
+{% extends 'closet/base.html' %}
+
+{% block content %}
+
+<div class="clothes-detail">
+
+<img src="{{ clothes.image.url }}" class="clothes-img">
+<div class="clothes-info">
+    <a href="{% url 'app:users_detail' clothes.user.id %}">@{{ clothes.user }}</a>
+</div>
+<table>
+  <tr>
+    <th>タイトル</th>
+    <td>{{ clothes.title }}</td>
+  </tr>
+  <tr>
+    <th>コメント</th>
+    <td>{{ clothes.comment }}</td>
+  </tr>
+  <tr>
+    <th>購入日</th>
+    <td>{{ clothes.date_of_purchase }}</td>
+  </tr>
+</table>
+
+
+<!-- 削除ボタン -->
+{% if request.user == clothes.user %}
+<form method="post" action="{% url 'app:clothes_delete' clothes.id %}">{% csrf_token %}
+    <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+</form>
+{% endif %}
+
+</div>
+{% endblock %}
