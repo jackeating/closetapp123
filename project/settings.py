@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=_pt)m#meaufd$*$ty@o!v7$fz$$(5m4(e^t!+@(l-zs!^fmd-'
-
+SECRET_KEY =
+# '=_pt)m#meaufd$*$ty@o!v7$fz$$(5m4(e^t!+@(l-zs!^fmd-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
 
 # Application definition
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -78,13 +79,19 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+import dj_database_url
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'name',
+        'USER': 'user',
+        'PASSWORD': '',
+        'HOST': 'host',
+        'PORT': '',
     }
 }
+
 
 
 # Password validation
@@ -132,6 +139,7 @@ MEDIA_URL = '/media/'
 LOGIN_URL = 'app:login'
 LOGIN_REDIRECT_URL = 'app:index'
 LOGOUT_REDIRECT_URL = 'app:index'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEBUG = False
 
@@ -142,4 +150,9 @@ except ImportError:
 
 if not DEBUG:
     import django_heroku
+    if not DEBUG:
+    SECRET_KEY = os.environ['=_pt)m#meaufd$*$ty@o!v7$fz$$(5m4(e^t!+@(l-zs!^fmd-']
     django_heroku.settings(locals())
+
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
