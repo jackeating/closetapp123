@@ -150,7 +150,6 @@ except ImportError:
 
 if not DEBUG:
     import django_heroku
-    if not DEBUG:
     SECRET_KEY = os.environ['=_pt)m#meaufd$*$ty@o!v7$fz$$(5m4(e^t!+@(l-zs!^fmd-']
     django_heroku.settings(locals())
 
