@@ -10,3 +10,4 @@ static3==0.7.0
 Pillow==5.0.0
 whitenoise==3.3.1
 cloudinary==1.17.0
+django-cloudinary-storage==0.2.3
