@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'closet',
+    'cloudinary',
+    'cloudinary_storage',
 
 ]
 
@@ -128,6 +130,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dn8z72uy5',
+    'API_KEY': '128882346966152',
+    'API_SECRET': 'yVnjZDCIadldAULgWc-_xxwEeBc'
+}
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
@@ -153,3 +161,4 @@ if not DEBUG:
 
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
