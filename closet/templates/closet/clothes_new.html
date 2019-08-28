@@ -7,28 +7,36 @@
 </div>
 
 <form action="{% url 'app:clothes_new' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
-    <table>
-        <tr>
-            <th>タイトル</th>
-            <td>{{ form.title }}</td>
-        </tr>
-        <tr>
-            <th>コメント</th>
-            <td>{{ form.comment }}</td>
-        </tr>
-        <tr>
-            <th>画像</th>
-            <td>{{ form.image }}</td>
-        </tr>
-        <tr>
-            <th>カテゴリー</th>
-            <td>{{ form.category }}</td>
-        </tr>
-        <tr>
-            <th>購入日</th>
-            <td>{{ form.date_of_purchase }}</td>
-        </tr>
-    </table>
+  <div class="form-group row">
+      <label for="{{ form.title_for_label }}" class="col-sm-3 col-form-label">タイトル</label>
+      <div class="col-sm-9">
+        {{ form.title }}
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for="{{ form.comment_for_label }}" class="col-sm-3 col-form-label">コメント</label>
+      <div class="col-sm-9">
+        {{ form.comment }}
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for="{{ form.image_for_label }}" class="col-sm-3 col-form-label">画像</label>
+      <div class="col-sm-9">
+        {{ form.image }}
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for="{{ form.category_for_label }}" class="col-sm-3 col-form-label">カテゴリー</label>
+      <div class="col-sm-9">
+        {{ form.category }}
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for="{{ form.date_of_purchase_for_label }}" class="col-sm-3 col-form-label">購入日</label>
+      <div class="col-sm-9">
+        {{ form.date_of_purchase }}
+      </div>
+  </div>
     <button type="submit" type="button" class="btn btn-outline-secondary" >保存</button>
 </form>
 

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'closet',
     'cloudinary',
     'cloudinary_storage',
+    'bootstrap_datepicker_plus',
+
 
 ]
 
