@@ -27,8 +27,10 @@
 <!-- 削除ボタン -->
 {% if request.user == clothes.user %}
 <form method="post" action="{% url 'app:clothes_delete' clothes.id %}">{% csrf_token %}
-    <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+    <button type="submit" type="button" class="btn btn-outline-secondary" onclick='return confirm("本当に削除しますか？");'>削除</button>
+
 </form>
+
 {% endif %}
 
 </div>
