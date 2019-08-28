@@ -19,7 +19,7 @@ class Clothes(models.Model):
     image = models.ImageField(upload_to = 'clothes')
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_of_purchase = models.DateTimeField()
+    date_of_purchase = models.DateField()
 
     def __str__(self):
         return self.title
