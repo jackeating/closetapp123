@@ -8,6 +8,8 @@ from .forms import ClothesForm
 from django.views.decorators.http import require_POST
 from .models import Clothes, Category
 from django.http import HttpResponse
+from django.core.paginator import Paginator
+
 
 def index(request):
     return render(request, 'closet/index.html')
@@ -17,6 +19,9 @@ def users_detail(request, pk):
     cate = Category.objects.all()
     user = get_object_or_404(User, pk=pk)
     clothess = user.clothes_set.all().order_by('-date_of_purchase')
+    paginator = Paginator(clothess, 30)
+    p = request.GET.get("p")
+    clothess = paginator.get_page(p)
     return render(request, 'closet/users_detail.html', {'user': user, 'clothess': clothess, 'cate':cate})
 
 def signup(request):

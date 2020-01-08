@@ -39,6 +39,23 @@
         </div>
     </div>
 {% endfor %}
+
+<div class="pager">
+    <!-- 前のページへのリンク -->
+    {% if clothess.has_previous %}
+        <a href="?p={{ clothess.previous_page_number }}">前へ</a>
+    {% endif %}
+
+    <!-- 現在のページ番号と全体のページ数 -->
+    <span>
+        {{ clothess.number }} / {{ clothess.paginator.num_pages }}
+    </span>
+
+    <!-- 次のページへのリンク -->
+    {% if clothess.has_next %}
+        <a href="?p={{ clothess.next_page_number }}">次へ</a>
+    {% endif %}
 </div>
+
 {% endif %}
 {% endblock %}
