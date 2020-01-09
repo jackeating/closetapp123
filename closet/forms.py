@@ -5,6 +5,7 @@ from cloudinary.forms import CloudinaryFileField
 
 
 class ClothesForm(ModelForm):
+    # 洋服を登録する為のフォーム
     class Meta:
         model = Clothes
         fields = ['title', 'comment', 'image', 'category', 'date_of_purchase']

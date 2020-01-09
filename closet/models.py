@@ -6,6 +6,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Category(models.Model):
+    # category項目のmodelを作成
     title = models.CharField(max_length=20)
 
     def __str__(self):
@@ -13,6 +14,7 @@ class Category(models.Model):
 
 
 class Clothes(models.Model):
+    # clothesのモデルを作成
     title = models.CharField(max_length=150)
     comment = models.TextField(blank=True)
     # image = CloudinaryField('image', blank=True, null=True,)
